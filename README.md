@@ -1,34 +1,43 @@
-# jspm-tut
+# jspm-build
 
-A trivial repo showing how to install and use bootstrap with jspm.
+## Project Setup
 
-Either clone this repo and then do `npm install`, `jspm install`
+Clone the repository.
+```
+git clone https://github.com/matt-mcdaniel/jspm-build.git
+```
 
-Or, to create it from scratch, do:
+Install global `jspm`
+```
+npm install -g jspm
+```
 
-1. `npm install -g jspm` // if you haven't already
-2. `mkdir jspm-tut`
-3. `cd jspm-tut`
-4. `npm init` // hit ENTER on all questions
-5. `npm install jspm`
-6. `jspm init` // again, hit ENTER on all questions
-7. `jspm install bootstrap`
-8. `jspm install css`
-10. Create your `index.html` and `main.js` as shown/desired
+Install dependencies
+```
+npm install && jspm install
+```
 
-You can use any server you like, but `live-server` is really cool, as it has live reload:
+## Configure Development Environment
 
-9. `npm install -g live-server`
-10. `live-server --port=8001` // in the root directory of your project
+Transpile ES2015 modules/syntax at runtime
+```
+npm run dev
+```
 
-This last command will open your default browser and serve your `index.html`.
+Serve your files at `localhost:8080`
+```
+npm run serve
+```
 
-For using the repo with ES5/AMD only, to avoid transpilation, checkout the `no-transpile` branch.
+## Build for Production
 
-# Creating a Bundle
+Bundle dependencies
+```
+npm run build
+```
 
-1. jspm install npm:clean-css
-2. jspm bundle main.js bundle.js --inject
-
-Now, restart the server again, and you'll get the bundled `bundle.js`
+Serve production-ready code
+```
+npm run serve
+```
 
