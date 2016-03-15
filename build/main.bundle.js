@@ -6023,25 +6023,42 @@ define("npm:jquery@2.2.1.js", ["npm:jquery@2.2.1/dist/jquery.js"], function(main
 });
 
 })();
-System.register('src/js/conditional.js', ['npm:jquery@2.2.1.js'], function (_export) {
-  'use strict';
-
-  var $;
-  return {
-    setters: [function (_npmJquery221Js) {
-      $ = _npmJquery221Js['default'];
-    }],
-    execute: function () {}
-  };
+System.registerDynamic("src/js/add-remove-els.js", [], false, function($__require, $__exports, $__module) {
+  var _retrieveGlobal = System.get("@@global-helpers").prepareGlobal($__module.id, null, null);
+  (function() {
+    this["addElement"] = addElement;
+    this["addModule"] = addModule;
+    function addElement(val, parent) {
+      var elToAdd = document.createElement('h3');
+      var parentNode = document.getElementById(parent);
+      parentNode.appendChild(elToAdd);
+      elToAdd.innerHTML = val;
+    }
+    function addModule(val) {
+      var path = val === 'custom' ? 'src/js/' + val : val;
+      System.import(path).then((mod) => {
+        console.log(mod);
+      });
+      addElement(path, 'modules-loaded');
+    }
+    $('button').on('click', function() {
+      var arr = $(this).html().split(' ');
+      var val = arr[1].toLowerCase();
+      addElement(val, 'elements-loaded');
+      addModule(val);
+    });
+  })();
+  return _retrieveGlobal();
 });
-System.register('src/main.js', ['npm:jquery@2.2.1.js', 'src/js/conditional.js'], function (_export) {
+
+System.register('src/main.js', ['npm:jquery@2.2.1.js', 'src/js/add-remove-els.js'], function (_export) {
   'use strict';
 
   var $;
   return {
     setters: [function (_npmJquery221Js) {
       $ = _npmJquery221Js['default'];
-    }, function (_srcJsConditionalJs) {}],
+    }, function (_srcJsAddRemoveElsJs) {}],
     execute: function () {}
   };
 });

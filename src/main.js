@@ -1,2 +1,2 @@
 import $ from 'jquery';
-import 'src/js/conditional';
+import 'src/js/add-remove-els';

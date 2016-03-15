@@ -1,0 +1,39 @@
+* {
+	font-family: 'Helvetica', sans-serif;
+	color: #777777;
+}
+
+.b {
+	display: block;
+}
+
+.ib {
+	display: inline-block;
+}
+
+.container {
+	text-align: center;
+	display: flex;
+	flex-flow: row;
+	width: 600px;
+	height: 200px;
+}
+
+.flex-child {
+	text-align: center;
+	border-right: 1px solid #c9c9c9;
+	flex: 1 auto;
+	padding: 20px;
+}
+
+h3 {
+	font-size: 16px;
+	display: block;
+	color: black;
+}
+
+button {
+	margin: 0 auto;
+	padding: 10px;
+	margin-bottom: 20px;
+}

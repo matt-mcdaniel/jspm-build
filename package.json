@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "browser-sync start --server --port 8080 --no-open --files '**/*.css, **/*.html, **/*.js'",
     "dev": "jspm unbundle",
-    "build": "jspm bundle src/main.js build/main.bundle.js --inject"
+    "build": "jspm bundle src/main.js build/main.bundle.js --inject --no-runtime"
   },
   "author": "",
   "license": "ISC",

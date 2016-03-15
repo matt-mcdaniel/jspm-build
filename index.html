@@ -1,46 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>JSPM Build</title>
-  <script src="jspm_packages/system.js"></script>
-  <script src="config.js"></script>
+	<meta charset="UTF-8">
+	<title>JSPM Build</title>
 
-  <style>
-
-	  .b {
-		  display: block;
-	  }
-
-	  .container {
-		  display: flex;
-		  flex-flow: row;
-		  height: 200px;
-	  }
-
-	  .flex-child {
-		  border: 1px solid #d3d3d3;
-		  flex: 1 auto;
-		  padding: 20px;
-	  }
-
-	</style>
+	<link rel="stylesheet" href="src/main.css"></link>
 
 </head>
+
 <body>
 
-<h1>Home</h1>
+	<div class="container b">
+		<div class="flex-child">
+			<button class="b" id="add-element">Add Custom Element</button>
+			<button class="b" id="add-element">Add D3 Element</button>
+		</div>
+		<div class="flex-child" id="elements-loaded">Elements Loaded</div>
+		<div class="flex-child" id="modules-loaded">Modules Loaded</div>
+	</div>
 
-<button class="b" id="add-element">Add Element</button>
+	<script src="jspm_packages/system.js"></script>
+	<script src="config.js"></script>
 
-<div class="container b">
-	<div class="flex-child" id="elements-loaded">Elements Loaded:</div>
-	<div class="flex-child" id="modules-loaded">Modules Loaded:</div>
-</div>
-
-<script>
-	System.import('src/main');
-</script>
+	<script>
+		System.import('src/main');
+	</script>
 
 </body>
+
 </html>

@@ -12,6 +12,14 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
+  bundles: {
+    "build/main.bundle.js": [
+      "src/main.js",
+      "src/js/add-remove-els.js",
+      "npm:jquery@2.2.1.js",
+      "npm:jquery@2.2.1/dist/jquery.js"
+    ]
+  },
 
   map: {
     "babel": "npm:babel-core@5.8.35",
