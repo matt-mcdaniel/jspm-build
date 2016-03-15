@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSPM Build</title>
+  <script src="jspm_packages/system.js"></script>
+  <script src="config.js"></script>
+
+  <style>
+
+	  .b {
+		  display: block;
+	  }
+
+	  .container {
+		  display: flex;
+		  flex-flow: row;
+		  height: 200px;
+	  }
+
+	  .flex-child {
+		  border: 1px solid #d3d3d3;
+		  flex: 1 auto;
+		  padding: 20px;
+	  }
+
+	</style>
+
+</head>
+<body>
+
+<h1>Home</h1>
+
+<button class="b" id="add-element">Add Element</button>
+
+<div class="container b">
+	<div class="flex-child" id="elements-loaded">Elements Loaded:</div>
+	<div class="flex-child" id="modules-loaded">Modules Loaded:</div>
+</div>
+
+<script>
+	System.import('src/main');
+</script>
+
+</body>
+</html>

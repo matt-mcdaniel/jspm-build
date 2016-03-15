@@ -1,0 +1,6 @@
+/node_modules
+/jspm_modules
+/jspm_packages
+/src/jsconfig.json
+.DS_Store
+npm-debug.log
