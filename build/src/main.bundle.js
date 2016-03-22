@@ -6023,7 +6023,7 @@ define("npm:jquery@2.2.1.js", ["npm:jquery@2.2.1/dist/jquery.js"], function(main
 });
 
 })();
-System.register('build/src/js/test.js', [], function (_export) {
+System.register('src/js/test.js', [], function (_export) {
   'use strict';
 
   var test;
@@ -6039,7 +6039,7 @@ System.register('build/src/js/test.js', [], function (_export) {
   };
 });
 
-System.register('build/src/js/add-remove-els.js', ['build/src/js/test.js'], function (_export) {
+System.register('src/js/add-remove-els.js', ['src/js/test.js'], function (_export) {
 	'use strict';
 
 	function addElement(val, parent) {
@@ -6053,7 +6053,7 @@ System.register('build/src/js/add-remove-els.js', ['build/src/js/test.js'], func
 	function addModule(val) {
 
 		console.log("add modules");
-		var path = val === 'custom' ? 'build/src/js/' + val + '.js' : val;
+		var path = val === 'custom' ? 'src/js/' + val + '.js' : val;
 
 		System['import'](path).then(function (mod) {
 			console.log(mod);
@@ -6076,7 +6076,7 @@ System.register('build/src/js/add-remove-els.js', ['build/src/js/test.js'], func
 	};
 });
 
-System.register('src/main.js', ['npm:jquery@2.2.1.js', 'build/src/js/add-remove-els.js'], function (_export) {
+System.register('src/main.js', ['npm:jquery@2.2.1.js', 'src/js/add-remove-els.js'], function (_export) {
   'use strict';
 
   var $;

@@ -1,8 +1,8 @@
 var jspm = require('jspm');
-var babel = require('gulp-babel');
-var es2015 = require('babel-preset-es2015');
 var replace = require('gulp-replace');
 var del = require('del');
+var babel = require('gulp-babel');
+var es2015 = require('babel-preset-es2015');
 
 module.exports = function(gulp) {
 
@@ -19,7 +19,7 @@ module.exports = function(gulp) {
 
 			// replace paths with build paths
 			gulp.src('build/src/main.bundle.js')
-				.pipe(replace('src/js/', 'build/src/js/'))
+				//.pipe(replace('src/js/', 'build/src/js/'))
 				.pipe(gulp.dest('build/src'));
 
 			// convert js to ES5
