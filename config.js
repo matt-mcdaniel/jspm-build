@@ -1,5 +1,5 @@
 System.config({
-  baseURL: "/build/",
+  baseURL: "/",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {
@@ -12,17 +12,9 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
-  bundles: {
-    "build/src/main.bundle.js": [
-      "src/main.js",
-      "npm:jquery@2.2.1.js",
-      "src/js/add-remove-els.js",
-      "src/js/test.js",
-      "npm:jquery@2.2.1/dist/jquery.js"
-    ]
-  },
 
   map: {
+    "ENV": "src/config/env.conditions.js",
     "babel": "npm:babel-core@5.8.35",
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",
