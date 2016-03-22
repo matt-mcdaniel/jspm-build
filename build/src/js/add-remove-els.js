@@ -1,4 +1,6 @@
-import 'src/js/test';
+'use strict';
+
+require('src/js/test');
 
 function addElement(val, parent) {
 	var elToAdd = document.createElement('h3');
@@ -11,16 +13,16 @@ function addElement(val, parent) {
 function addModule(val) {
 
 	console.log("add modules");
-	var path = val === 'custom' ? 'src/js/' + val + '.js': val;
+	var path = val === 'custom' ? 'src/js/' + val + '.js' : val;
 
-	System.import(path).then((mod) => {
+	System.import(path).then(function (mod) {
 		console.log(mod);
-	})
+	});
 
 	addElement(path, 'modules-loaded');
 }
 
-$('button').on('click', function() {
+$('button').on('click', function () {
 	var arr = $(this).html().split(' ');
 	var val = arr[1].toLowerCase();
 

@@ -1,13 +1,18 @@
 {
-  "name": "jspm-tut",
+  "name": "jspm-build",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.js",
+  "baseURL": ".",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "browser-sync start --server --port 8080 --no-open --files '**/*.css, **/*.html, **/*.js'",
     "dev": "jspm unbundle",
-    "build": "jspm bundle src/main.js build/main.bundle.js --inject --no-runtime"
+    "build": "gulp bundle",
+    "unbuild": "gulp unbundle",
+    "build-sfx": "jspm unbundle && jspm bundle-sfx src/main.js build/main.bundle.js --no-runtime",
+    "builder": "jspm bundle src/main build/src/main.bundle --inject && gulp build",
+    "builder-sfx": "gulp bundle-sfx"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +29,12 @@
     }
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-debug": "^2.1.2",
+    "gulp-replace": "^0.5.4",
     "jspm": "^0.16.2"
   }
 }

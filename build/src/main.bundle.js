@@ -6023,35 +6023,60 @@ define("npm:jquery@2.2.1.js", ["npm:jquery@2.2.1/dist/jquery.js"], function(main
 });
 
 })();
-System.registerDynamic("src/js/add-remove-els.js", [], false, function($__require, $__exports, $__module) {
-  var _retrieveGlobal = System.get("@@global-helpers").prepareGlobal($__module.id, null, null);
-  (function() {
-    this["addElement"] = addElement;
-    this["addModule"] = addModule;
-    function addElement(val, parent) {
-      var elToAdd = document.createElement('h3');
-      var parentNode = document.getElementById(parent);
-      parentNode.appendChild(elToAdd);
-      elToAdd.innerHTML = val;
+System.register('build/src/js/test.js', [], function (_export) {
+  'use strict';
+
+  var test;
+  return {
+    setters: [],
+    execute: function () {
+      test = function test() {
+        return console.log('test loaded');
+      };
+
+      _export('test', test);
     }
-    function addModule(val) {
-      var path = val === 'custom' ? 'src/js/' + val : val;
-      System.import(path).then((mod) => {
-        console.log(mod);
-      });
-      addElement(path, 'modules-loaded');
-    }
-    $('button').on('click', function() {
-      var arr = $(this).html().split(' ');
-      var val = arr[1].toLowerCase();
-      addElement(val, 'elements-loaded');
-      addModule(val);
-    });
-  })();
-  return _retrieveGlobal();
+  };
 });
 
-System.register('src/main.js', ['npm:jquery@2.2.1.js', 'src/js/add-remove-els.js'], function (_export) {
+System.register('build/src/js/add-remove-els.js', ['build/src/js/test.js'], function (_export) {
+	'use strict';
+
+	function addElement(val, parent) {
+		var elToAdd = document.createElement('h3');
+		var parentNode = document.getElementById(parent);
+
+		parentNode.appendChild(elToAdd);
+		elToAdd.innerHTML = val;
+	}
+
+	function addModule(val) {
+
+		console.log("add modules");
+		var path = val === 'custom' ? 'build/src/js/' + val + '.js' : val;
+
+		System['import'](path).then(function (mod) {
+			console.log(mod);
+		});
+
+		addElement(path, 'modules-loaded');
+	}
+
+	return {
+		setters: [function (_srcJsTestJs) {}],
+		execute: function () {
+			$('button').on('click', function () {
+				var arr = $(this).html().split(' ');
+				var val = arr[1].toLowerCase();
+
+				addElement(val, 'elements-loaded');
+				addModule(val);
+			});
+		}
+	};
+});
+
+System.register('src/main.js', ['npm:jquery@2.2.1.js', 'build/src/js/add-remove-els.js'], function (_export) {
   'use strict';
 
   var $;
@@ -6062,4 +6087,3 @@ System.register('src/main.js', ['npm:jquery@2.2.1.js', 'src/js/add-remove-els.js
     execute: function () {}
   };
 });
-//# sourceMappingURL=main.bundle.js.map
