@@ -5,7 +5,7 @@ var es2015 = require('babel-preset-es2015');
 
 module.exports = function(gulp) {
 
-	gulp.task('bundle', ['clean'], function() {
+	gulp.task('bundle', ['clean', 'html-multi-script'], function() {
 
 		jspm.bundle('src/main.js', 'build/src/main.bundle.js', {
 			inject: true,

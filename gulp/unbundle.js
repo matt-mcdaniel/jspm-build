@@ -1,12 +1,7 @@
-var jspm = require('jspm');
+module.exports = function(gulp, ENV) {
 
-module.exports = function(gulp) {
-
-	gulp.task('unbundle', function() {
-
-		jspm.unbundle();
-
-	});
+	gulp.task('unbuild', ['clean', 'html-multi-script']);
 
 	return gulp;
-};
+
+}

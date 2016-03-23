@@ -14,7 +14,6 @@ System.config({
   },
 
   map: {
-    "ENV": "src/config/env.conditions.js",
     "babel": "npm:babel-core@5.8.35",
     "babel-runtime": "npm:babel-runtime@5.8.35",
     "core-js": "npm:core-js@1.2.6",

@@ -3,24 +3,22 @@ var babel = require('gulp-babel');
 var Builder = require('systemjs-builder');
 var path = require('path');
 
-module.exports = function(gulp) {
+module.exports = function(gulp, ENV) {
 
-	gulp.task('bundle-sfx', ['clean'], function() {
+	gulp.task('build-files', function() {
 
+		// sets new baseURL and config
 		var baseURL = path.join(__dirname, '../');
 		var config = path.join(__dirname, '../config.js');
+		var builder = new Builder(baseURL, config);
 
 		var entry = path.join(__dirname, '../src/main.js');
 		var outfile = path.join(__dirname, '../build/src/main.bundle.js');
+		var systemImportShim = path.join(__dirname, '../src/config/system-import-shim.js');
 
-		// sets new baseURL and config
-		var builder = new Builder(baseURL, config);
+		var bundle = ENV === 'prod' ? systemImportShim + ' + ' + entry : entry;
 
-		builder.buildStatic(entry, outfile, {
-			// conditions: {
-			// 	'src/app/core/config/env.conditions.js|mock.js': ENV.toLowerCase() === 'test', 'src/app/core/config/env.conditions.js|environment': ENV.toLowerCase()
-			// },
-			// sourceMaps: true,
+		builder.buildStatic(bundle, outfile, {
 			config: {
 				runtime: false,
 				minify: false,
@@ -37,8 +35,7 @@ module.exports = function(gulp) {
 			// build individual modules
 			gulp.src('src/js/**/*.js')
 				.pipe(babel({
-					presets: ['es2015'],
-					plugins: ['system-import-transformer']
+					presets: ['es2015']
 				}))
 				.pipe(gulp.dest('build/src/js'));
 
@@ -47,6 +44,8 @@ module.exports = function(gulp) {
 		});
 
 	});
+
+	gulp.task('bundle-sfx', ['build-files', 'clean', 'unbundle', 'html-single-script'])
 
 	return gulp;
 };

@@ -1,5 +1,6 @@
 export default (function(global) {
 
+	// need to hook into System
 	console.log('polyfilling System!');
 
 	global.System = global.System || {};

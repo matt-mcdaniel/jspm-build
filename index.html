@@ -20,14 +20,15 @@
 		<div class="flex-child" id="modules-loaded">Modules Loaded</div>
 	</div>
 
-	<script src="jspm_packages/system.js"></script>
-	<script src="config.js"></script>
+	<!-- inject:dev -->
+	<script src="/jspm_packages/system.js"></script>
+	<script src="/config.js"></script>
+	<script>System.import("src/main");</script>
+	<!-- endinject:dev -->
 
-	<script>
-		System.import('src/main');
-	</script>
 
-	<!--<script src="build/src/main.bundle.js"></script>-->
+	<!-- inject:prod -->
+	<!-- endinject:prod -->
 
 </body>
 
