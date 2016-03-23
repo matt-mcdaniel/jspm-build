@@ -1,5 +1,4 @@
 System.config({
-  baseURL: "/",
   defaultJSExtensions: true,
   transpiler: "babel",
   babelOptions: {
@@ -11,6 +10,15 @@ System.config({
   paths: {
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
+  },
+  bundles: {
+    "build/main.bundle.js": [
+      "src/main.js",
+      "src/js/add-remove-els.js",
+      "npm:jquery@2.2.1.js",
+      "src/js/test.js",
+      "npm:jquery@2.2.1/dist/jquery.js"
+    ]
   },
 
   map: {

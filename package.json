@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
-  "baseURL": ".",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "browser-sync start --server --port 8080 --no-open --files '**/*.css, **/*.html, **/*.js'",
-    "bundle": "NODE_ENV=prod gulp bundle",
+    "bundle": "NODE_ENV=dev gulp bundle",
     "build": "NODE_ENV=prod gulp bundle-sfx",
     "unbuild": "NODE_ENV=dev gulp unbuild"
   },
@@ -30,10 +29,13 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
     "gulp-delete-lines": "0.0.7",
+    "gulp-if": "^2.0.0",
     "gulp-inject": "^4.0.0",
     "gulp-replace": "^0.5.4",
+    "gulp-uglify": "^1.5.3",
     "jspm": "^0.16.2",
     "systemjs-builder": "^0.15.13"
   }

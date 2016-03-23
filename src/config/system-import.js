@@ -1,0 +1,2 @@
+System.import('src/main');
+

@@ -1,29 +1,21 @@
 var jspm = require('jspm');
 var replace = require('gulp-replace');
-var babel = require('gulp-babel');
-var es2015 = require('babel-preset-es2015');
 
 module.exports = function(gulp) {
 
-	gulp.task('bundle', ['clean', 'html-multi-script'], function() {
+	gulp.task('bundle', ['clean', 'unbundle', 'build-deps', 'html-multi-script'], function() {
 
-		jspm.bundle('src/main.js', 'build/src/main.bundle.js', {
+		jspm.bundle('src/main', 'build/main.bundle.js', {
 			inject: true,
 			mangle: true,
 			format: 'cjs'
 		}).then(function() {
 
-			// replace paths with build paths
-			gulp.src('build/src/main.bundle.js')
-				.pipe(replace('src/js/', 'build/src/js/'))
-				.pipe(gulp.dest('build/src'));
+			console.log('Bundle created and injected into config.js');
 
-			// build individual modules
-			gulp.src('src/js/**/*.js')
-				.pipe(babel({
-					presets: [es2015]
-				}))
-				.pipe(gulp.dest('build/src/js'));
+			gulp.src('build/main.bundle.js')
+				.pipe(replace(/System\[[\'\"]import[\'\"]\]\([\"\']src\/(.*)[\"\']\)/gi, 'System["import"]("build/$1")'))
+				.pipe(gulp.dest('build'));
 
 		}).catch(function(e) {
 			console.warn(e);

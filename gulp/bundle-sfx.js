@@ -1,51 +1,34 @@
+var concat = require('gulp-concat');
 var replace = require('gulp-replace');
-var babel = require('gulp-babel');
-var Builder = require('systemjs-builder');
 var path = require('path');
+var jspm = require('jspm');
 
 module.exports = function(gulp, ENV) {
 
-	gulp.task('build-files', function() {
+	gulp.task('bundle-sfx', ['clean', 'unbundle', 'build-deps', 'html-single-script'], function() {
 
-		// sets new baseURL and config
-		var baseURL = path.join(__dirname, '../');
-		var config = path.join(__dirname, '../config.js');
-		var builder = new Builder(baseURL, config);
-
-		var entry = path.join(__dirname, '../src/main.js');
-		var outfile = path.join(__dirname, '../build/src/main.bundle.js');
-		var systemImportShim = path.join(__dirname, '../src/config/system-import-shim.js');
-
-		var bundle = ENV === 'prod' ? systemImportShim + ' + ' + entry : entry;
-
-		builder.buildStatic(bundle, outfile, {
-			config: {
-				runtime: false,
-				minify: false,
-				mangle: false,
-				format: 'cjs'
-			}
+		jspm.bundle('src/main', 'build/main.bundle.js', {
+			inject: true,
+			minify: true,
+			mangle: true,
+			format: 'cjs'
 		}).then(function() {
 
-			// replace paths with build paths
-			gulp.src('build/src/main.bundle.js')
-				.pipe(replace('src/js/', 'build/src/js/'))
-				.pipe(gulp.dest('build/src'));
-
-			// build individual modules
-			gulp.src('src/js/**/*.js')
-				.pipe(babel({
-					presets: ['es2015']
-				}))
-				.pipe(gulp.dest('build/src/js'));
+			gulp.src([
+				'jspm_packages/system.js',
+				'config.js',
+				'build/main.bundle.js',
+				'src/config/system-import.js'
+			])
+				.pipe(concat('main.bundle.js'))
+				.pipe(replace(/System\[[\'\"]import[\'\"]\]\([\"\']src\/(.*)[\"\']\)/gi, 'System["import"]("build/$1")'))
+				.pipe(gulp.dest('build'));
 
 		}).catch(function(e) {
-			console.log(e);
+			console.warn('Error bundling files:', e);
 		});
 
 	});
-
-	gulp.task('bundle-sfx', ['build-files', 'clean', 'unbundle', 'html-single-script'])
 
 	return gulp;
 };
