@@ -1,9 +1,6 @@
 # jspm-build
 
-## Overview
-
-This project is a particular implementation of [`jspm`](http://jspm.io/) that allows for use of ES6 modules and syntax in development and deployment to ES5, browser-friendly code in production. It takes an extra step of transpiling each JavaScript module in separate files to
-support asynchronous dependency loading during runtime. *These asynchronous loads in production do not rely on in-browser transpiling; they are simply ES5 modules that are asynchronously fetched on an as-needed basis.*
+## Background
 
 [jspm](http://jspm.io/) is a package manager that helps normalize packages written in different modules formats. It allows the developer to load nearly any `npm` package and makes them suitable for client-side use (e.g., `jspm install d3`) via `import` statements. All of these dependencies are then housed in the `package.json` for centralized dependency management.
 
@@ -13,6 +10,11 @@ Using `jspm` helps create a "future-proof" environment by
 * Allowing the developer to write ES6 modules and syntax pending browser adoption
 * Supporting a myriad of current, ES5 module formats
 * Creating a suitable module-loading system for an HTTP/2 environment
+
+## Overview
+
+This project is a particular implementation of [`jspm`](http://jspm.io/) that allows for use of ES6 modules and syntax in development and deployment to ES5, browser-friendly code in production. It takes an extra step of transpiling each JavaScript module in separate files to
+support asynchronous dependency loading during runtime. *These asynchronous loads in production do not rely on in-browser transpiling; they are simply ES5 modules that are asynchronously fetched on an as-needed basis.*
 
 ## General Worfklow
 
